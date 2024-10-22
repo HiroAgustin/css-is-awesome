@@ -1,0 +1,50 @@
+#Controls {
+	border-color: LightGray;
+	border-radius: .25rem;
+	font-size: .5rem;
+	inset-block-end: anchor(bottom);
+	inset-block-start: auto;
+	inset-inline-end: anchor(right);
+	inset-inline-start: auto;
+	list-style-type: none;
+	padding: .33rem;
+	position: absolute;
+	position-anchor: --joystick;
+	pointer-events: all;
+	transition:
+		opacity .15s ease-in,
+		scale .15s ease-in,
+		display .15s ease-in;
+	transition-timing-function: ease-in;
+	transition-behavior: allow-discrete;
+	transform-origin: bottom right;
+
+	&:not(:popover-open) {
+		opacity: 0;
+		scale: .66;
+		transition-duration: .1s;
+		transition-timing-function: ease-out;
+	}
+
+	@starting-style {
+		opacity: 0;
+		scale: .66;
+	}
+
+	li + li {
+		margin-top: .25rem;
+	}
+
+	label {
+		cursor: pointer;
+		display: flex;
+		gap: .5rem;
+		justify-content: space-between;
+	}
+
+	[type="checkbox"] {
+		accent-color: currentColor;
+		scale: 2;
+		transform-origin: center right;
+	}
+}

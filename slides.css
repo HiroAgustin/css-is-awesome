@@ -1,0 +1,70 @@
+:root {
+	--color: #222;
+}
+
+::selection {
+  background-color: var(--color);
+  color: WhiteSmoke;
+}
+
+html {
+	background-color: WhiteSmoke;
+	color: var(--color);
+	font-size: 4rem;
+}
+
+main {
+	display: flex;
+	height: 100cqh;
+  overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+	scrollbar-color: transparent transparent;
+}
+
+section {
+	align-items: center;
+	display: flex;
+	flex-basis: 100%;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: center;
+  padding: 1rem;
+  scroll-snap-align: start;
+
+	html:has([name="DelimitSlides"]:checked) & {
+		box-shadow: 0 0 0 .1rem currentColor;
+	}
+}
+
+blockquote {
+	padding-inline-start: .75rem;
+	border-inline-start: .2rem solid oklch(from var(--color) l c h / 25%);
+	font-style: italic;
+	max-width: 24ch;
+	text-wrap: balance;
+}
+
+@keyframes spin {
+	to { rotate: 1turn }
+}
+
+#Timer {
+	animation: spin 300s linear forwards;
+	grid-area: Timer;
+}
+
+#ThankYou {
+	font-size: 3rem;
+
+	span {
+		display: inline-block;
+		text-box-edge: cap alphabetic;
+		text-box-trim: trim-both;
+	}
+
+	&:hover > span {
+		animation: spin 1s linear infinite;
+	}
+}

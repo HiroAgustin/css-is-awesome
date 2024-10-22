@@ -1,0 +1,80 @@
+:root {
+	interpolate-size: allow-keywords;
+}
+
+@property --border {
+	inherits: false;
+	initial-value: 0%;
+	syntax: '<percentage>';
+}
+
+@property --background {
+	inherits: false;
+	initial-value: 0%;
+	syntax: '<percentage>';
+}
+
+.Logo {
+	align-content: center;
+	aspect-ratio: 1.618;
+	border: .15rem solid currentColor;
+	border-image-slice: 1;
+	border-image-source: conic-gradient(
+		transparent, transparent var(--border),
+		currentColor var(--border), currentColor 100%);
+	font-size: 2.5rem;
+	font-weight: normal;
+	padding: .25rem;
+	text-transform: uppercase;
+	transition:
+		--border 4.5s,
+		width 1.25s 4.5s;
+	transition-timing-function: ease-in-out;
+	width: min-content;
+	word-spacing: .5ex;
+
+	@starting-style {
+		--border: 100%;
+		width: 6.3ex;
+	}
+
+	:has(> &) {
+		display: grid;
+		place-items: center;
+	}
+
+	html:not(:has([name="ShowLogo"]:checked)) & {
+		display: none;
+	}
+
+	span {
+		background-clip: text;
+		background-image: linear-gradient(to left,
+			transparent, transparent var(--background),
+			var(--color) var(--background), var(--color) 100%);
+		);
+		color: transparent;
+		transition-property: --background;
+
+		@starting-style {
+			--background: 100%;
+		}
+
+		&:nth-child(1) {
+			transition-delay: 0;
+			transition-duration: 1s;
+			transition-timing-function: steps(3, end);
+		}
+
+		&:nth-child(2) {
+			transition-delay: 1.5s;
+			transition-duration: 1s;
+			transition-timing-function: steps(1, start);
+		}
+
+		&:nth-child(3) {
+			transition-delay: 2s;
+			transition-duration: 2s;
+		}
+	}
+}

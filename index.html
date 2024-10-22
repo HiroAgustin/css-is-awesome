@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>CSS is Awesome</title>
+
+	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="slides.css">
+	<link rel="stylesheet" href="logo.css">
+	<link rel="stylesheet" href="controls.css">
+	<link rel="stylesheet" href="progress.css">
+	<link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+	<main>
+		<aside>
+			<div id="Progress"></div>
+			<span id="Timer">⏲️</span>
+
+			<button popovertarget="Controls">🕹️</button>
+
+			<ul id="Controls" popover>
+				<li>
+					<label>
+						<span>Show Logo</span>
+						<input type="checkbox" name="ShowLogo">
+					</label>
+				</li>
+				<li>
+					<label>
+						<span>Move Joystick</span>
+						<input type="checkbox" name="MoveJoystick">
+					</label>
+				</li>
+				<li>
+					<label>
+						<span>Highlight Progress</span>
+						<input type="checkbox" name="HighlightProgress">
+					</label>
+				</li>
+				<li>
+					<label>
+						<span>Delimit Slides</span>
+						<input type="checkbox" name="DelimitSlides">
+					</label>
+				</li>
+			</ul>
+
+			<style>
+				@scope {
+					:scope {
+						--padding: .25rem;
+
+						display: grid;
+						grid-template-areas:
+							"Progress Progress Progress Progress Progress Progress Progress"
+							". . . . . . ."
+							". . . . . . ."
+							". . . . . . ."
+							". Timer . . . Controls ."
+							". . . . . . .";
+						grid-template-columns: var(--padding) min-content auto min-content auto min-content var(--padding);
+						grid-template-rows: min-content auto min-content auto min-content var(--padding);
+						inset: 0;
+						pointer-events: none;
+						position: fixed;
+
+						:has([name="MoveJoystick"]:checked) & {
+							grid-template-areas:
+								"Progress Progress Progress Progress Progress Progress Progress"
+								". . . . . . ."
+								". . . Controls . . ."
+								". . . . . . ."
+								". Timer . . . . ."
+								". . . . . . .";
+						}
+
+						button {
+							anchor-name: --joystick;
+							filter: grayscale(100%);
+							background: none;
+							border: none;
+							cursor: pointer;
+							grid-area: Controls;
+							padding: 0;
+							pointer-events: all;
+						}
+					}
+				}
+			</style>
+		</aside>
+
+		<section>
+			<h1 class="Logo">
+				<span>CSS</span>
+				<span>is</span>
+				<span>Awesome</span>
+			</h1>
+		</section>
+
+		<section>
+			<h1>Animate Width</h1>
+			<pre><code>:root {
+	interpolate-size: allow-keywords;
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>Golden Ratio</h1>
+			<pre><code>aspect-ratio: 1.618;</code></pre>
+		</section>
+
+		<section>
+			<h1>Vertically Center</h1>
+			<pre><code>align-content: center;</code></pre>
+		</section>
+
+		<section>
+			<h1>Animate Border</h1>
+			<pre><code>border-image-slice: 1;
+border-image-source: conic-gradient(
+	transparent, transparent var(--border),
+	currentColor var(--border), currentColor 100%);</code></pre>
+		</section>
+
+		<section>
+			<h1>Typed Variables</h1>
+			<pre><code>@property --border {
+	inherits: false;
+	initial-value: 0%;
+	syntax: '&lt;percentage&gt;';
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>Initial styles</h1>
+			<pre><code>@starting-style {
+	--border: 100%;
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>Good ol’ Transition</h1>
+			<pre><code>transition: --border 4.5s;</code></pre>
+		</section>
+
+		<section>
+			<h1>Showing text</h1>
+			<pre><code>background-clip: text;
+background-image: linear-gradient(to left,
+	transparent, transparent var(--background),
+	var(--color) var(--background), var(--color) 100%);
+);
+color: transparent;
+transition-property: --background;</code></pre>
+		</section>
+
+		<section>
+			<h1>Show Logo</h1>
+			<pre><code>.Logo {
+	html:not(:has([name="ShowLogo"]:checked)) & {
+		display: none;
+	}
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>HTML Popover API</h1>
+			<pre><code>&lt;button popovertarget="Controls"&gt;🕹️&lt;/button&gt;
+
+&lt;ul id="Controls" popover&gt;…&lt;ul&gt;</code></pre>
+		</section>
+
+		<section>
+			<h1>Anchor Positioning API</h1>
+			<pre><code>inset-block-end: anchor(bottom);
+inset-block-start: auto;
+inset-inline-end: anchor(right);
+inset-inline-start: auto;
+position: absolute;
+position-anchor: --joystick;</code></pre>
+		</section>
+
+		<section>
+			<h1>Anchor</h1>
+			<pre><code>anchor-name: --joystick;</code></pre>
+		</section>
+
+		<section>
+			<h1 style="margin-top: 2rem">Demo</h1>
+		</section>
+
+		<section>
+			<h1>Animate Hidden</h1>
+			<pre><code>transition-behavior: allow-discrete;</code></pre>
+		</section>
+
+		<section>
+			<h1>Style Inputs</h1>
+			<pre><code>accent-color: currentColor;</code></pre>
+		</section>
+
+		<section>
+			<h1>Style Selection</h1>
+			<pre><code>::selection {
+	background-color: var(--color);
+	color: WhiteSmoke;
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>Scroll Driven Animations</h1>
+			<pre><code>main {
+	scroll-timeline: --Progress x;
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>Animate Progressbar</h1>
+			<pre><code>#Progress {
+	animation: Progress auto linear;
+	animation-timeline: --Progress;
+	transform-origin: 0 center;
+	transition: scale ease-in-out 100ms;
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>Keyframe Animation</h1>
+			<pre><code>@keyframes Progress {
+	from {
+		background-color: oklch(71.2% 0.1932 233);
+		scale: 0 1;
+	}
+
+	to {
+		background-color: oklch(70.6% 0.3537 329);
+		scale: 1 1;
+	}
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>Carrousel</h1>
+			<pre><code>main {
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>Slides</h1>
+			<pre><code>scroll-snap-align: start;</code></pre>
+		</section>
+
+		<section>
+			<h1>HUD</h1>
+			<pre><code>display: grid;
+grid-template-areas:
+	"Progress Progress Progress Progress Progress"
+	". . . . ."
+	". Timer . Controls ."
+	". . . . .";
+grid-template-columns:
+	var(--padding) min-content auto min-content var(--padding);
+grid-template-rows: min-content auto min-content var(--padding);</code></pre>
+		</section>
+
+		<section>
+			<h1>Variable fonts</h1>
+			<pre><code>@font-face {
+	font-family: 'FontWithASyntaxHighlighter';
+	src:
+		url('FontWithASyntaxHighlighter-Regular.woff2')
+		format('woff2');
+}
+
+code {
+	font-family: "FontWithASyntaxHighlighter", monospace;
+}</code></pre>
+		</section>
+
+		<section>
+			<h1>More</h1>
+			<ul>
+				<li>oklch</li>
+				<li>filters</li>
+				<li>container units</li>
+				<li>@scope</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>JS 🔨</h1>
+			<blockquote>It is tempting, if the only tool you have is a hammer, to treat everything as if it were a nail.</blockquote>
+		</section>
+
+		<section>
+			<h1>CSS 🪛</h1>
+		</section>
+
+		<section>
+			<h1 id="ThankYou">
+				<span>Thank</span>
+				<span>You</span>
+			</h1>
+		</section>
+	</main>
+</body>
+</html>

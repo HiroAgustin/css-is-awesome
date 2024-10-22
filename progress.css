@@ -1,0 +1,28 @@
+@keyframes Progress {
+	from {
+		background-color: oklch(71.2% 0.1932 233);
+		scale: 0 1;
+	}
+
+	to {
+		background-color: oklch(70.6% 0.3537 329);
+		scale: 1 1;
+	}
+}
+
+main {
+	scroll-timeline: --Progress x;
+}
+
+#Progress {
+	animation: Progress auto linear;
+	animation-timeline: --Progress;
+	grid-area: Progress;
+	height: .25rem;
+	transform-origin: 0 center;
+	transition: scale ease-in-out 100ms, height ease-out 400ms;
+
+	:has([name="HighlightProgress"]:checked) & {
+		height: 1rem;
+	}
+}

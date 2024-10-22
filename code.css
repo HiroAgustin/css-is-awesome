@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'FontWithASyntaxHighlighter';
+  src:
+    url('FontWithASyntaxHighlighter-Regular.woff2')
+    format('woff2');
+}
+
+code {
+	color: White;
+  font-family: "FontWithASyntaxHighlighter", monospace;
+	tab-size: 2;
+
+	:has(> &) {
+		background-color: var(--color);
+		border-radius: .5rem;
+		font-size: .5rem;
+		padding: .5rem;
+	}
+}
